@@ -82,7 +82,7 @@ class ComputeAccuracy:
         for i in range(len(preds)):
             pred, label = preds[i, :-1], labels[i, 1:]
             label_mask = label != IGNORE_INDEX
-            self.score_dict["accuracy"].append(np.mean(pred[label_mask] == label[label_mask]))
+            self.score_dict["accuracy"].append(np.mean(pred[label_mask][:1] == label[label_mask][:1]))
 
         if compute_result:
             return self._dump()
